@@ -1,0 +1,19 @@
+<div  class="ui raised segment" >
+  <form class="ui form" [formGroup]="myForm"  (ngSubmit)="onSubmit(myForm.value)"  >
+    <div class="field">
+      <label for="imageHeight">Height</label>
+      <input type="text" id="imageHeight" placeholder="height"  [formControl]="myForm.controls['imageHeight']"  />
+      <div *ngIf="!myForm.controls['imageHeight'].valid"  class="ui error ">imageHeight is invalid</div>
+      <div *ngIf="myForm.controls['imageHeight'].hasError('notEven')"  class="ui error">imageHeight should be even</div>
+
+    </div>
+    <br/>
+    <div class="field">
+      <label for="imageWidth">Wigth</label>
+      <input type="text" id="imageWidth" placeholder="width" [formControl]="myForm.controls['imageWidth']"  />
+      <div *ngIf="!myForm.controls['imageWidth'].valid"  class="ui error ">imageWidth is invalid</div>
+      <div *ngIf="myForm.controls['imageWidth'].hasError('notEven')"  class="ui error">imageWidth should be even</div>
+    </div>
+     <button type="submit" class="ui button">Submit</button>
+  </form>
+</div>

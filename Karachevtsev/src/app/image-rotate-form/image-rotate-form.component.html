@@ -1,0 +1,13 @@
+<div  class="ui raised segment" >
+  <form class="ui form" [formGroup]="rotateForm"  (ngSubmit)="onSubmit(rotateForm.value)"  >
+    <div class="field">
+     <label for="rotateRight">rotateRight</label>
+      <input type="radio" id="rotateRight"  [formControl]="rotateForm.controls['rotateRight']"  name="rotateDirection" />
+      <label for="rotateLeft">rotateLeft</label>
+      <input type="radio" id="rotateLeft"  [formControl]="rotateForm.controls['rotateLeft']"  name="rotateDirection"/>
+      <button type="submit" class="ui button">Submit</button>
+
+    </div>
+
+  </form>
+</div>

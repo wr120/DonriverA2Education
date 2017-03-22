@@ -1,0 +1,11 @@
+<div class="ui grid">
+  <div class="ui four wide column">
+    <app-image-form [imageDimensions]="imageDimensions"></app-image-form>
+  </div>
+  <div class="ui four wide column">
+    <img src="http://sister.net.ua/wp-content/uploads/2014/08/%D0%BF47.jpg" [style.width.px]="imageDimensions.imageWidth" [style.height.px]="imageDimensions.imageHeight"
+    />
+  </div>
+  <br/>
+  <div><app-image-rotate-form [imageDimensions]="imageDimensions"></app-image-rotate-form></div>
+</div>
