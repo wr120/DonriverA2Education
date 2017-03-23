@@ -1,0 +1,12 @@
+<td class = "td-label">
+  <label for="skuInput">{{title}}</label>
+</td>
+<td class="td-value">
+  <input type="text"
+         placeholder="{{title}}"
+         class="input-el"
+         [formControl]="control">
+</td>
+<td class="td-error">
+  <div *ngIf="!control.valid && control.touched">{{title}} is invalid</div>
+</td>

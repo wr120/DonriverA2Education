@@ -1,0 +1,14 @@
+<div>
+  <app-resource-form [resourceForm] = "resourceForm" [carList] = "carList" (selectedRowEvent) = "populateProperties($event)"></app-resource-form>
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal" [ngClass]="{'opened': isPopupOpened}">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="close" (click)="closePopUp();">&times;</div>
+      <p style=" width: 80em;"><app-result-form [resultForm] = "resultForm" *ngIf="selectedCar != null" (saveChanges) = "saveChangeToTable($event)"></app-result-form></p>
+    </div>
+
+  </div>
+</div>

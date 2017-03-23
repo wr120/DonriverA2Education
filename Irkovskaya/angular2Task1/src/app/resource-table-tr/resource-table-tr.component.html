@@ -1,0 +1,7 @@
+<app-resource-table-td *ngFor="let propertyItem of item.properties; let columnIndex = index"
+                        [cell]="propertyItem"
+                        [rowIndex] = "rowIndex"
+                        [columnIndex] = "columnIndex"
+                        [ngClass] = "{'header-td' : rowIndex == 0}"
+                        class="ui td">
+</app-resource-table-td>

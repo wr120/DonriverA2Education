@@ -1,0 +1,4 @@
+<div class="text">{{cell.value}}</div>
+<div *ngIf = "rowIndex == 0">
+    <input class="filter_{{columnIndex}} search-input" [formControl]="cell.filter"/>
+</div>

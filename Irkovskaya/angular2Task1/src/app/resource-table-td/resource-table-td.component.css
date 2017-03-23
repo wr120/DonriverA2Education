@@ -1,0 +1,9 @@
+div.text {
+    padding: 0px 1em;
+    white-space: nowrap;
+}
+.search-input {
+    border-radius: 5px;
+    margin: 0px 1em;
+    width: 10em;
+}

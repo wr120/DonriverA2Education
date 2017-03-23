@@ -1,0 +1,13 @@
+.td-label {
+    width:20%;
+}
+.td-value {
+    width: 50%;
+}
+.td-error {
+    width: 30%;
+}
+input.input-el {
+    width: 20em;
+    height: 1em;
+}

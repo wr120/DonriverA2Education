@@ -1,0 +1,6 @@
+.header-row {
+    background-color: darkgray;
+}
+app-resource-table-tr {
+    display: table-row;
+}

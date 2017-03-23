@@ -1,0 +1,45 @@
+<form [formGroup] = "resultForm" class="ui form" 
+      (ngSubmit)="onSubmit(resultForm.value)">
+  <table class = "ui table">
+    <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['vendor'].valid && resultForm.controls['vendor'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Vendor')"
+       [control] = "resultForm.controls['vendor']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['model'].valid && resultForm.controls['model'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Model')"
+       [control] = "resultForm.controls['model']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['price'].valid && resultForm.controls['price'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Price')"
+       [control] = "resultForm.controls['price']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['mileage'].valid && resultForm.controls['mileage'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Mileage')"
+       [control] = "resultForm.controls['mileage']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['vin-code'].valid && resultForm.controls['vin-code'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('VIN Code')"
+       [control] = "resultForm.controls['vin-code']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['items-stock'].valid && resultForm.controls['items-stock'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Items Stock')"
+       [control] = "resultForm.controls['items-stock']"></app-result-form-row>
+   <app-result-form-row class="field"
+       [class.error]="!resultForm.controls['days-live'].valid && resultForm.controls['days-live'].touched"
+       style="display: table-row;"
+       [title] = "getTitle('Days Live')"
+       [control] = "resultForm.controls['days-live']"></app-result-form-row>
+    <tr>
+        <td colspan="3">
+            <button type="submit" style="float: right;">Apply</button>
+        </td>
+    </tr>
+  </table>
+</form>

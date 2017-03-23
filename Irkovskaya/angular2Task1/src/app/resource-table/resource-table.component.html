@@ -1,0 +1,12 @@
+<div style = "max-height: 30em; overflow: auto;">
+    <div class="ui celled table" style  = "display: table;" >
+        <app-resource-table-tr *ngFor="let carItem of carList; let position = index"
+                               [item]="carItem"
+                               [rowIndex] = "position"
+                               (click)='clicked(position)'
+                               [class.selected]="carItem.selected"
+                               [ngClass] = "{'header-row': position == 0}"
+                               class="ui tr">
+        </app-resource-table-tr>
+    </div>
+</div>

@@ -1,0 +1,5 @@
+<form [formGroup] = "resourceForm">
+    <app-resource-table [carList]="getFilteredCar()"
+                        (onCarSelected)="carWasSelected($event)">
+    </app-resource-table>
+</form>
