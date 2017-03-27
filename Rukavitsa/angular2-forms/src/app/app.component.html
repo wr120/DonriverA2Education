@@ -1,0 +1,22 @@
+<div class="ui raised segment">
+  <h3 class="ui header">Text</h3>
+  <form [formGroup]="textForm" class="ui form">
+      <input type="text" [formControl]="textControl">
+      <div *ngIf="textControl.hasError('invalidText')"
+        class="ui error message">Backslashes are not allowed</div>
+  </form>
+</div>
+
+<div class="ui raised segment">
+  <h3 class="ui header">Fragment</h3>
+  <form [formGroup]="fragmentForm" class="ui form">
+      <input type="text" [formControl]="fragmentControl">
+      <div *ngIf="textControl.hasError('required') && !fragmentControl.hasError('required')"
+        class="ui error message">Please specify any Text first</div>
+  </form>
+</div>
+
+<div *ngIf="textControl.valid && fragmentControl.valid" 
+  class="ui raised segment">
+  <div class="ui info message"><b>{{occurences}}</b> Fragment(s) found in the Text</div>
+</div>
