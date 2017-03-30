@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Observable, Subscription } from 'rxjs/Rx';
+import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -6,11 +7,15 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   textForm: FormGroup;
   fragmentForm: FormGroup;
   textControl: AbstractControl;
   fragmentControl: AbstractControl;
+  textObservable: Observable<string>;
+  fragmentObservable: Observable<any>;
+  textListener: Subscription;
+  fragmentListener: Subscription;
   textValue: String;
   fragmentValue: string;
   occurences = 0;
@@ -25,12 +30,15 @@ export class AppComponent {
     this.textControl = this.textForm.controls['textControl'];
     this.fragmentControl = this.fragmentForm.controls['fragmentControl'];
 
-    this.textControl.valueChanges.subscribe(value => {
+    this.textObservable = this.textControl.valueChanges;
+    this.textListener = this.textObservable.subscribe(value => {
       this.textValue = value;
       this.checkTheOccurrences();
     });
 
-    this.fragmentControl.valueChanges.subscribe(value => {
+    this.fragmentObservable = this.fragmentControl.valueChanges;
+    this.fragmentObservable.filter(value => value === 'o'); // <----- Issue here
+    this.fragmentListener = this.fragmentObservable.subscribe(value => {
       this.fragmentValue = value;
       this.checkTheOccurrences();
     });
@@ -49,5 +57,10 @@ export class AppComponent {
     } else {
       this.occurences = this.textValue.split(this.fragmentValue).length - 1;
     }
+  }
+
+  ngOnDestroy() {
+    this.textListener.unsubscribe();
+    this.fragmentListener.unsubscribe();
   }
 }
