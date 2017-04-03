@@ -1,10 +1,10 @@
-import { Angular2FormsPage } from './app.po';
+import { Angular2Forms2Page } from './app.po';
 
-describe('angular2-forms App', function() {
-  let page: Angular2FormsPage;
+describe('angular2-forms2 App', () => {
+  let page: Angular2Forms2Page;
 
   beforeEach(() => {
-    page = new Angular2FormsPage();
+    page = new Angular2Forms2Page();
   });
 
   it('should display message saying app works', () => {

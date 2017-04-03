@@ -13,7 +13,7 @@ export class AppComponent implements OnDestroy {
   textControl: AbstractControl;
   fragmentControl: AbstractControl;
   textObservable: Observable<string>;
-  fragmentObservable: Observable<any>;
+  fragmentObservable = new Observable<string>();
   textListener: Subscription;
   fragmentListener: Subscription;
   textValue: String;
@@ -36,9 +36,9 @@ export class AppComponent implements OnDestroy {
       this.checkTheOccurrences();
     });
 
-    this.fragmentObservable = this.fragmentControl.valueChanges;
-    this.fragmentObservable.filter(value => value === 'o'); // <----- Issue here
+    this.fragmentObservable = this.fragmentControl.valueChanges.delay(500);
     this.fragmentListener = this.fragmentObservable.subscribe(value => {
+      console.log(value);
       this.fragmentValue = value;
       this.checkTheOccurrences();
     });
