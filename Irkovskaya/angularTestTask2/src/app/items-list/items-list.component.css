@@ -1,0 +1,9 @@
+app-item-row {
+    display: flex;
+    margin: 1em;
+}
+.ui.items {
+    max-width: 70em;
+    max-height: 50em;
+    overflow-y: auto;
+}
