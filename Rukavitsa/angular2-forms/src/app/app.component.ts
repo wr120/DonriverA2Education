@@ -1,4 +1,4 @@
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Rx';
 import { Component, OnDestroy } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -12,8 +12,6 @@ export class AppComponent implements OnDestroy {
   fragmentForm: FormGroup;
   textControl: AbstractControl;
   fragmentControl: AbstractControl;
-  textObservable: Observable<string>;
-  fragmentObservable = new Observable<string>();
   textListener: Subscription;
   fragmentListener: Subscription;
   textValue: String;
@@ -30,15 +28,13 @@ export class AppComponent implements OnDestroy {
     this.textControl = this.textForm.controls['textControl'];
     this.fragmentControl = this.fragmentForm.controls['fragmentControl'];
 
-    this.textObservable = this.textControl.valueChanges;
-    this.textListener = this.textObservable.subscribe(value => {
+    this.textListener = this.textControl.valueChanges.subscribe(value => {
       this.textValue = value;
       this.checkTheOccurrences();
     });
 
-    this.fragmentObservable = this.fragmentControl.valueChanges.delay(500);
-    this.fragmentListener = this.fragmentObservable.subscribe(value => {
-      console.log(value);
+    this.fragmentListener = this.fragmentControl.valueChanges.delay(250)
+    .subscribe(value => {
       this.fragmentValue = value;
       this.checkTheOccurrences();
     });
