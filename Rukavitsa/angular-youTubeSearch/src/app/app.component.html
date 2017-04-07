@@ -13,7 +13,7 @@
       <app-search-box
         (loading)="loading=$event"
         (results)="updateResults($event)"
-        [moreClicks]="clicks"></app-search-box>
+        [more]="more"></app-search-box>
     </div>
   </div>
 
@@ -25,9 +25,9 @@
 
   <div class="row" infinite-scroll 
    [infiniteScrollDistance]="3" 
-   (scrolled)="onScrollDown()">
-    <button #moreBtn
+   (scrolled)="more.next()">
+    <!--<button #moreBtn
       class="btn btn-default"
-      [style.visibility]="results ? 'visible' : 'hidden'">More</button>
+      [style.visibility]="results ? 'visible' : 'hidden'">More</button>-->
   </div>
 </div>

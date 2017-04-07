@@ -8,27 +8,31 @@ export const YOUTUBE_API_URL = 'https://www.googleapis.com/youtube/v3/search';
 
 @Injectable()
 export class YouTubeSearchService {
-    pages = 1;
-    videos = 12;
+    private page = 0;
+    private videosPerPage = 12;
+    private nextPageToken: string;
 
     constructor (private http: Http,
                  @Inject(YOUTUBE_API_KEY) private apiKey: string,
                  @Inject(YOUTUBE_API_URL) private apiUrl: string) {}
 
     search(query: string): Observable<SearchResult[]> {
-        const params: string = [
+        let params: string = [
             `q=${query}`,
             `key=${this.apiKey}`,
             'part=snippet',
             'type=video',
-            `maxResults=${this.pages * this.videos}`
+            `maxResults=${this.videosPerPage}`
         ].join('&');
+        if (this.page > 0) { params = params.concat(`&pageToken=${this.nextPageToken}`); }
         const queryUrl = `${this.apiUrl}?${params}`;
 
         return this.http.get(queryUrl)
         .map(response => {
-            return (<any>response.json()).items.map(item => {
+            this.nextPageToken = response.json().nextPageToken;
+            return response.json().items.map(item => {
                 return new SearchResult({
+                    page: this.page,
                     id: item.id.videoId,
                     title: item.snippet.title,
                     description: item.snippet.description,
@@ -38,6 +42,6 @@ export class YouTubeSearchService {
         });
     }
 
-    incrementPages(): void { this.pages++; }
-    resetPages(): void { this.pages = 1; }
+    incrementPage(): void { this.page++; }
+    resetPage(): void { this.page = 0; }
 }

@@ -1,4 +1,5 @@
 export class SearchResult {
+    page: number;
     id: string;
     title: string;
     description: string;
@@ -6,6 +7,7 @@ export class SearchResult {
     videoUrl: string;
 
     constructor(obj?: any) {
+        this.page = obj && obj.page || 0;
         this.id = obj && obj.id || null;
         this.title = obj && obj.title || null;
         this.description = obj && obj.description || null;

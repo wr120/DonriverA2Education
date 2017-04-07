@@ -10,7 +10,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@ang
 export class SearchBoxComponent implements OnInit {
   @Output() loading: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() results: EventEmitter<SearchResult[]> = new EventEmitter<SearchResult[]>();
-  @Input() moreClicks: Observable<any>;
+  @Input() more: EventEmitter<{}>;
   onNext = ((next: SearchResult[]) => {
     this.loading.next(false);
     this.results.next(next);
@@ -31,7 +31,7 @@ export class SearchBoxComponent implements OnInit {
     .filter((text: string) => text.length > 1)
     .debounceTime(500)
     .do(() => {
-      this.youtube.resetPages();
+      this.youtube.resetPage();
       return this.loading.next(true);
     })
     .map((query: string) => {
@@ -41,8 +41,8 @@ export class SearchBoxComponent implements OnInit {
     .switch()
     .subscribe(this.onNext, this.onErr, this.onComplete);
 
-    this.moreClicks.subscribe(() => {
-      this.youtube.incrementPages();
+    this.more.subscribe(() => {
+      this.youtube.incrementPage();
       this.youtube.search(searchQuery)
       .subscribe(this.onNext, this.onErr, this.onComplete);
     });

@@ -1,6 +1,7 @@
+import { InfiniteScrollEvent } from 'angular2-infinite-scroll';
 import { Observable, Subject } from 'rxjs/Rx';
 import { SearchResult } from './search-result.model';
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, EventEmitter, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import ngInfiniteScroll from 'ng-infinite-scroll';
 
 @Component({
@@ -8,20 +9,23 @@ import ngInfiniteScroll from 'ng-infinite-scroll';
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit {
-  @ViewChild('moreBtn', {read: ViewContainerRef}) moreBtn: ViewContainerRef;
+  // @ViewChild('moreBtn', {read: ViewContainerRef}) moreBtn: ViewContainerRef;
+  // clicks: Observable<any>;
   results: SearchResult[];
   loading: boolean;
-  clicks: Observable<any>;
+  more = new EventEmitter();
 
   ngOnInit() {
-    this.clicks = Observable.fromEvent(this.moreBtn.element.nativeElement, 'click');
+    // this.clicks = Observable.fromEvent(this.moreBtn.element.nativeElement, 'click');
   }
 
   updateResults(results: SearchResult[]): void {
-    this.results = results;
+    if (!results[0]) { return; }
+    if (results[0].page === 0) {
+      this.results = results;
+    } else {
+      this.results = this.results.concat(results);
+    }
   }
 
-  onScrollDown () {
-    this.moreBtn.element.nativeElement.click();
-  }
 }
