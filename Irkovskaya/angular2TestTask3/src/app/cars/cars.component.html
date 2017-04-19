@@ -1,0 +1,33 @@
+<div>
+  <h2>Welcome To The App</h2>
+  <table>
+    <tr>
+      <td>
+        <app-car-item [imageurl] = "'app/resources/images/chevrolet.png'"
+                      [title] = "'Chevrolet'"
+                      (click)="showCar('Chevrolet')">
+        </app-car-item>
+      </td>
+      <td>
+        <app-car-item [imageurl] = "'app/resources/images/ford.png'"
+                      [title] = "'Ford'"
+                      (click)="showCar('Ford')">
+        </app-car-item>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <app-car-item [imageurl] = "'app/resources/images/nissan.png'"
+                      [title] = "'Nissan'"
+                      (click)="showCar('Nissan')">
+        </app-car-item>
+      </td>
+      <td>
+        <app-car-item [imageurl] = "'app/resources/images/toyota.png'" 
+                      [title] = "'Toyota'"
+                      (click)="showCar('Toyota')">
+        </app-car-item>
+      </td>
+    </tr>
+  </table>
+</div>
