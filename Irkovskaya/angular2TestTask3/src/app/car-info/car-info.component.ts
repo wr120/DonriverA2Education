@@ -1,6 +1,7 @@
+import { Observable } from 'rxjs/Rx';
 import { CarList } from '../CarList';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Car } from '../../Car';
 
 @Component({
@@ -8,17 +9,22 @@ import { Car } from '../../Car';
   templateUrl: './car-info.component.html',
   styleUrls: ['./car-info.component.css']
 })
-export class CarInfoComponent implements OnInit {
+export class CarInfoComponent implements OnInit, OnDestroy {
 
   model: string;
   vendor: string;
   filteredList: Car[];
+  subscriber1$;
   constructor(private route: ActivatedRoute, public list: CarList) {
-    route.params.subscribe(params => { this.model = params['model']; this.filterValues(); });
-    route.parent.url.subscribe(url => { this.vendor = url.toString(); });
+    this.subscriber1$ = route.params.subscribe(params => { this.model = params['model']; this.filterValues(); });
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy() {
+    this.subscriber1$.unsubscribe();
+    console.log('destroy');
   }
 
   filterValues() {
